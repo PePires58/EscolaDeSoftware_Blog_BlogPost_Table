@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Escola de software - Blog - BlogPost Table
+Parameters:
+  Environment:
+    Description: Environment
+    Type: String
+  BlogPostTableName:
+    Description: Blogpost table name
+    Type: String
+  ReadCapacityUnits:
+    Description: Read capacity units
+    Type: String
+  WriteCapacityUnits:
+    Description: Write capacity units
+    Type: String
+  PrimaryKeyName:
+    Description: Primary Key Name
+    Type: String
+  PrimaryKeyType:
+    Description: Primary Key Type
+    Type: String
+    Default: String
+  PipelineBucketName:
+    Description: Bucket name for the pipeline
+    Type: String
+
+Resources:
+  BlogPostTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: !Join ["_", [!Ref Environment, !Ref BlogPostTableName]]
+      PrimaryKey:
+        Name: !Ref PrimaryKeyName
+        Type: !Ref PrimaryKeyType
+      ProvisionedThroughput:
+        ReadCapacityUnits: !Ref ReadCapacityUnits
+        WriteCapacityUnits: !Ref WriteCapacityUnits
+
+  S3BlogPostTablePipeline:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref PipelineBucketName
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  S3BlogPostTablePipelinePolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3BlogPostTablePipeline
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:PutObject
+            Effect: Allow
+            Resource:
+              - !Sub arn:aws:s3:::${S3BlogPostContent}
+              - !Sub arn:aws:s3:::${S3BlogPostContent}/*
+            Principal:
+              Service: "codecommit.amazonaws.com"
+            Condition:
+              StringEquals:
+                aws:SourceAccount: !Sub ${AWS::AccountId}
