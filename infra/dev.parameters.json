@@ -4,7 +4,6 @@
     "BlogPostTableName": "",
     "ReadCapacityUnits": 0,
     "WriteCapacityUnits": 0,
-    "PrimaryKeyName": "",
-    "PipelineBucketName": ""
+    "PrimaryKeyName": ""
   }
 }
