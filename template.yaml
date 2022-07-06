@@ -27,7 +27,7 @@ Resources:
     Properties:
       TableName: !Join ["_", [!Ref Environment, !Ref BlogPostTableName]]
       PrimaryKey:
-        Name: !Sub "${PrimaryKeyName}"
+        Name: !Ref PrimaryKeyName
         Type: String
       ProvisionedThroughput:
         ReadCapacityUnits: !Ref ReadCapacityUnits
