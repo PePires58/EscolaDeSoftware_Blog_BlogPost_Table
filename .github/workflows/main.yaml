@@ -3,8 +3,6 @@ on:
   push:
     branches: [main]
 
-env:
-
 jobs:
   Build-project:
     runs-on: ubuntu-latest
