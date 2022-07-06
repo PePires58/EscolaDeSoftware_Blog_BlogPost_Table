@@ -1,9 +1,9 @@
 {
   "Parameters": {
     "Environment": "dev",
-    "BlogPostTableName": "",
-    "ReadCapacityUnits": 0,
-    "WriteCapacityUnits": 0,
-    "PrimaryKeyName": ""
+    "BlogPostTableName": "escoladesoftware_blog_blogpost",
+    "ReadCapacityUnits": 2,
+    "WriteCapacityUnits": 1,
+    "PrimaryKeyName": "title"
   }
 }
