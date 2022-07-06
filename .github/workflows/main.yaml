@@ -1,9 +1,9 @@
-name: Main branch workflow prod
+name: Nuget workflow prod
 on:
-  push:
-    branches:
-      - main
-      
+  push: [main]
+
+env:
+
 jobs:
   Build-project:
     runs-on: ubuntu-latest
@@ -11,14 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
-
-    - name: Deploy
-      run: |
-        aws s3 ls
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+      - name: Deploy
+        run: |
+          aws s3 ls
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
