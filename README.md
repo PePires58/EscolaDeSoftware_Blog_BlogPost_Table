@@ -4,7 +4,4 @@ This is a SAM template file for creating a simple DynamoDb for the BlogPost Micr
 
 This template includes configurations for a provisioned table format
 
-What are **NOT** include:
-
-- Pipeline for AWS, this is only a backup repository
-- Integration with AWS CodeCommit
+The deploy is with github workflows using AWS SAM and CloudFormation
