@@ -26,3 +26,17 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: !Ref ReadCapacityUnits
         WriteCapacityUnits: !Ref WriteCapacityUnits
+
+  BlogPostTableGetItemPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: Policy for getItem on BlogPost table
+      ManagedPolicyName:
+        !Join ["_", [!Ref Environment, "BlogPostTableGetItem", "Policy"]]
+      Path: "/"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: "dynamodb:GetItem"
+            Resource: !GetAtt BlogPostTable.Arn
