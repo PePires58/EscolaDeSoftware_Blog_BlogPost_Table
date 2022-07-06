@@ -44,3 +44,5 @@ Outputs:
   BlogPostTableName:
     Description: BlogPost Table Name
     Value: !Ref BlogPostTable
+    Export:
+      Name: BlogPostTableName
