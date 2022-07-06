@@ -43,4 +43,4 @@ Resources:
 Outputs:
   BlogPostTableName:
     Description: BlogPost Table Name
-    Value: !GetAtt BlogPostTable.TableName
+    Value: !Ref BlogPostTable
