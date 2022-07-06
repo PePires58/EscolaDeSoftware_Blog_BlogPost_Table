@@ -10,10 +10,10 @@ Parameters:
     Type: String
   ReadCapacityUnits:
     Description: Read capacity units
-    Type: String
+    Type: Number
   WriteCapacityUnits:
     Description: Write capacity units
-    Type: String
+    Type: Number
   PrimaryKeyName:
     Description: Primary Key Name
     Type: String
