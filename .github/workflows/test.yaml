@@ -1,4 +1,4 @@
-name: Nuget workflow prod
+name: Nuget workflow - Test
 on:
   push:
     branches: [test]

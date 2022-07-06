@@ -1,4 +1,4 @@
-name: Nuget workflow prod
+name: Nuget workflow - Development
 on:
   push:
     branches: [development]
