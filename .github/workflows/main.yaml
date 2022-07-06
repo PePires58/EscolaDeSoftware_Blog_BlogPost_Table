@@ -1,6 +1,7 @@
 name: Nuget workflow prod
 on:
-  push: [main]
+  push:
+    branches: [main]
 
 env:
 
