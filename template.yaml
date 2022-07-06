@@ -14,12 +14,6 @@ Parameters:
   WriteCapacityUnits:
     Description: Write capacity units
     Type: Number
-  PrimaryKeyName:
-    Description: Primary Key Name
-    Type: String
-  PrimaryKeyType:
-    Description: Primary Key Type
-    Type: String
 
 Resources:
   BlogPostTable:
