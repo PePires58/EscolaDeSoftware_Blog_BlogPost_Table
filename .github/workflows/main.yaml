@@ -8,7 +8,7 @@ env:
   OUTPUT_DIRECTORY: ${{ github.workspace }}/output
 
 jobs:
-  Deploy-infra:
+  CloudFormation:
     runs-on: ubuntu-latest
 
     steps:
