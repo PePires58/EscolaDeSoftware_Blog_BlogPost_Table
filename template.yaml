@@ -20,7 +20,6 @@ Parameters:
   PrimaryKeyType:
     Description: Primary Key Type
     Type: String
-    Default: String
 
 Resources:
   BlogPostTable:
