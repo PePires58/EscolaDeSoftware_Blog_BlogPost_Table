@@ -40,3 +40,11 @@ Resources:
           - Effect: Allow
             Action: "dynamodb:GetItem"
             Resource: !GetAtt BlogPostTable.Arn
+Outputs:
+  BlogPostTableGetItemPolicyName:
+    Description: BlogPost Table - Get Item Policy Name
+    Value: !GetAtt BlogPostTableGetItemPolicy.ManagedPolicyName
+
+  BlogPostTableName:
+    Description: BlogPost Table Name
+    Value: !GetAtt BlogPostTable.TableName
