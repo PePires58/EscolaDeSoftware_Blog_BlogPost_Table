@@ -40,9 +40,3 @@ Resources:
           - Effect: Allow
             Action: "dynamodb:GetItem"
             Resource: !GetAtt BlogPostTable.Arn
-Outputs:
-  BlogPostTableName:
-    Description: BlogPost Table Name
-    Value: !Ref BlogPostTable
-    Export:
-      Name: BlogPostTableName
