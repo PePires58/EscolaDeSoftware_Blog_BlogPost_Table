@@ -10,12 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set lower case repo name
-        run: |
-          echo "REPO_LOWERCASE=${REPO,,}" >>${GITHUB_ENV}
-        env:
-          REPO: "${{ github.repository }}"
-
       - name: Package
         run: |
           sam package --s3-bucket ${{ secrets.AWS_BUCKET_DEPLOY }} --template-file template.yaml --output-template-file deploy.yaml
@@ -26,7 +20,7 @@ jobs:
 
       - name: Deploy
         run: |
-          aws cloudformation deploy --template-file deploy.yaml --stack-name dev-${{ repo_lowercase }} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides  file://infra/dev.parameters.json
+          aws cloudformation deploy --template-file deploy.yaml --stack-name dev-escoladesoftware-blog-blogpost-table --capabilities CAPABILITY_NAMED_IAM --parameter-overrides  file://infra/dev.parameters.json
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
