@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set Repo Name to lowercase
+      - name: Lowercase
         run: |
           repo_lowercase=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -)
 
