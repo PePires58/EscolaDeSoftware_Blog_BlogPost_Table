@@ -54,3 +54,17 @@ Resources:
           - Effect: Allow
             Action: "dynamodb:PutItem"
             Resource: !GetAtt BlogPostTable.Arn
+
+  BlogPostTableDeleteItemPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: Policy for DeleteItem on BlogPost table
+      ManagedPolicyName:
+        !Join ["_", [!Ref Environment, "BlogPostTableDeleteItem", "Policy"]]
+      Path: "/"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: "dynamodb:DeleteItem"
+            Resource: !GetAtt BlogPostTable.Arn
