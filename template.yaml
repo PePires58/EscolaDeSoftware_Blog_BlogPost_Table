@@ -40,3 +40,17 @@ Resources:
           - Effect: Allow
             Action: "dynamodb:GetItem"
             Resource: !GetAtt BlogPostTable.Arn
+
+  BlogPostTablePutItemPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: Policy for PutItem on BlogPost table
+      ManagedPolicyName:
+        !Join ["_", [!Ref Environment, "BlogPostTablePutItem", "Policy"]]
+      Path: "/"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: "dynamodb:PutItem"
+            Resource: !GetAtt BlogPostTable.Arn
