@@ -25,6 +25,12 @@ Resources:
           KeyType: HASH
         - AttributeName: title
           KeyType: RANGE
+      AttributeDefinition:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: title
+          AttributeType: S
+
       ProvisionedThroughput:
         ReadCapacityUnits: !Ref ReadCapacityUnits
         WriteCapacityUnits: !Ref WriteCapacityUnits
