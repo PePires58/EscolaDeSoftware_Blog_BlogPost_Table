@@ -38,6 +38,8 @@ Resources:
               KeyType: HASH
             - AttributeName: resume
               KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
       ProvisionedThroughput:
         ReadCapacityUnits: !Ref ReadCapacityUnits
         WriteCapacityUnits: !Ref WriteCapacityUnits
