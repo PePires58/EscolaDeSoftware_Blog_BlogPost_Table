@@ -17,12 +17,31 @@ Parameters:
 
 Resources:
   BlogPostTable:
-    Type: AWS::Serverless::SimpleTable
+    Type: AWS::DynamoDB::Table
     Properties:
       TableName: !Join ["_", [!Ref Environment, !Ref BlogPostTableName]]
-      PrimaryKey:
-        Name: title
-        Type: String
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: title
+          KeyType: RANGE
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: title
+          AttributeType: S
+        - AttributeName: resume
+          AttributeType: S
+      LocalSecondaryIndexes:
+        - IndexName:
+            !Join ["_", [!Ref Environment, !Ref BlogPostTableName, Resume]]
+          KeySchema:
+            - AttributeName: id
+              KeyType: HASH
+            - AttributeName: resume
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
       ProvisionedThroughput:
         ReadCapacityUnits: !Ref ReadCapacityUnits
         WriteCapacityUnits: !Ref WriteCapacityUnits
@@ -53,4 +72,18 @@ Resources:
         Statement:
           - Effect: Allow
             Action: "dynamodb:PutItem"
+            Resource: !GetAtt BlogPostTable.Arn
+
+  BlogPostTableDeleteItemPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: Policy for DeleteItem on BlogPost table
+      ManagedPolicyName:
+        !Join ["_", [!Ref Environment, "BlogPostTableDeleteItem", "Policy"]]
+      Path: "/"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: "dynamodb:DeleteItem"
             Resource: !GetAtt BlogPostTable.Arn
