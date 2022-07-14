@@ -30,6 +30,8 @@ Resources:
           AttributeType: S
         - AttributeName: title
           AttributeType: S
+        - AttributeName: resume
+          AttributeType: S
       LocalSecondaryIndexes:
         - IndexName:
             !Join ["_", [!Ref Environment, !Ref BlogPostTableName, Resume]]
