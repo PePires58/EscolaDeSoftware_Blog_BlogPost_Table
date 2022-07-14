@@ -25,7 +25,7 @@ Resources:
           KeyType: HASH
         - AttributeName: title
           KeyType: RANGE
-      AttributeDefinition:
+      AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
         - AttributeName: title
