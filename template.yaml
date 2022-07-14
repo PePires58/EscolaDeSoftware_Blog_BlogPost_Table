@@ -30,7 +30,14 @@ Resources:
           AttributeType: S
         - AttributeName: title
           AttributeType: S
-
+      LocalSecondaryIndexes:
+        - IndexName:
+            !Join ["_", [!Ref Environment, !Ref BlogPostTableName, Resume]]
+          KeySchema:
+            - AttributeName: id
+              KeyType: HASH
+            - AttributeName: resume
+              KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: !Ref ReadCapacityUnits
         WriteCapacityUnits: !Ref WriteCapacityUnits
