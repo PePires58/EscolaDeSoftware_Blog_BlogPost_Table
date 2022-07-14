@@ -17,12 +17,14 @@ Parameters:
 
 Resources:
   BlogPostTable:
-    Type: AWS::Serverless::SimpleTable
+    Type: AWS::DynamoDB::Table
     Properties:
       TableName: !Join ["_", [!Ref Environment, !Ref BlogPostTableName]]
-      PrimaryKey:
-        Name: title
-        Type: String
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: title
+          KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: !Ref ReadCapacityUnits
         WriteCapacityUnits: !Ref WriteCapacityUnits
